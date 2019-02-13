@@ -1,4 +1,4 @@
-from chap05.common import  *   ## 생성한 함수를 모드 쓸라면 일일이 쓸 필요 없이 *으로 쓰면됨
+from chap05._common import  *   ## 생성한 함수를 모드 쓸라면 일일이 쓸 필요 없이 *으로 쓰면됨
 
 applePrice = 100
 appleNumber = 2

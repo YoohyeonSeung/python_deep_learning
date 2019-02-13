@@ -1,5 +1,6 @@
 import numpy as np
-
+## Y = W*X + b에서 W와 b를 찾는 방법이 mean squared 와 cross entropy방법이 있다. 이중 먼저 여기서는
+## mean squared 방법을 먼저 해본것.
 def mean_squared_error(y, t):
     return 0.5 * np.sum( np.power( y-t, 2  )   )
 

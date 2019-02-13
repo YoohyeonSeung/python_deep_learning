@@ -13,11 +13,12 @@ def img_show(img):
 
 (x_train, t_train, ),(x_test, t_test)=load_mnist(flatten=True, normalize=False, one_hot_label=False)
 
-img = x_train[2]
-label = t_train[2]
+img = x_train[3]
+label = t_train[3]
 print(label)
 print(img.shape)
 img = img.reshape(28, 28)  # 형상을 원래 이미지의 크기로 변형.
 print(img.shape)
 
 img_show(img)
+
