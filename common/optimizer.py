@@ -22,7 +22,7 @@ class Momentum:
         self.momentum = momentum
         self.v = None
         
-    def update(self, params, grads):
+    def update(self, params, grads):    # params 는 책에서의 W
         if self.v is None:
             self.v = {}
             for key, val in params.items():                                

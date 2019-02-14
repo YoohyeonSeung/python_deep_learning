@@ -13,22 +13,18 @@ def ReLU(x):
 
 def tanh(x):
     return np.tanh(x)
-
-
-input_data = np.random.randn(10, 2)
-node_num = 2  # 각 은닉층의 노드(뉴런) 수
+    
+input_data = np.random.randn(1000, 100)  # 1000개의 데이터
+# 표준 정규분포로 난수를 생성하는데 1000 X 100의 행렬의 형태로 생성
+node_num = 100  # 각 은닉층의 노드(뉴런) 수
 hidden_layer_size = 5  # 은닉층이 5개
 activations = {}  # 이곳에 활성화 결과를 저장
 
 x = input_data
-print(x)
 
 for i in range(hidden_layer_size):
     if i != 0:
-        x = activations[i - 1]
-        print("i={0}".format(i))
-        print('x')
-        print(x)
+        x = activations[i-1]
 
     # 초깃값을 다양하게 바꿔가며 실험해보자！
     # w = np.random.randn(node_num, node_num) * 1
@@ -36,23 +32,24 @@ for i in range(hidden_layer_size):
     w = np.random.randn(node_num, node_num) * np.sqrt(1.0 / node_num)
     # w = np.random.randn(node_num, node_num) * np.sqrt(2.0 / node_num)
 
+
     a = np.dot(x, w)
-    print('a')
-    print(a)
+
+
 
     # 활성화 함수도 바꿔가며 실험해보자！
-    # z = sigmoid(a)
-    z = ReLU(a)
+    z = sigmoid(a)     # Xavier 초기값 -> 1/sqrt(n)
+    # z = ReLU(a)         # He 초기값 -> sqrt(2/n)
     # z = tanh(a)
 
     activations[i] = z
 
 # 히스토그램 그리기
 for i, a in activations.items():
-    plt.subplot(1, len(activations), i + 1)
-    plt.title(str(i + 1) + "-layer")
+    plt.subplot(1, len(activations), i+1)
+    plt.title(str(i+1) + "-layer")
     if i != 0: plt.yticks([], [])
     # plt.xlim(0.1, 1)
     # plt.ylim(0, 7000)
-    plt.hist(a.flatten(), 30, range=(0, 1))
+    plt.hist(a.flatten(), 30, range=(0,1))
 plt.show()
