@@ -16,7 +16,7 @@ t_train = t_train[:500]
 
 # 20%를 검증 데이터로 분할
 validation_rate = 0.20
-validation_num = int(x_train.shape[0] * validation_rate)
+validation_num = int(x_train.shape[0] * validation_rate) # 숫자 하나를 지정해서 500개의 데이터
 x_train, t_train = shuffle_dataset(x_train, t_train)
 x_val = x_train[:validation_num]
 t_val = t_train[:validation_num]
@@ -26,7 +26,7 @@ t_train = t_train[validation_num:]
 
 def __train(lr, weight_decay, epocs=50):
     network = MultiLayerNet(input_size=784, hidden_size_list=[100, 100, 100, 100, 100, 100],
-                            output_size=10, weight_decay_lambda=weight_decay)
+                            output_size=10, weight_decay_lambda=weight_decay) # 6개의 layer층
     trainer = Trainer(network, x_train, t_train, x_val, t_val,
                       epochs=epocs, mini_batch_size=100,
                       optimizer='sgd', optimizer_param={'lr': lr}, verbose=False)
@@ -39,7 +39,7 @@ def __train(lr, weight_decay, epocs=50):
 optimization_trial = 100
 results_val = {}
 results_train = {}
-for _ in range(optimization_trial):
+for _ in range(optimization_trial):  # 별도로 range에 의해 변수를 반환 받을 필요가 없으면_를 쓴다
     # 탐색한 하이퍼파라미터의 범위 지정===============
     weight_decay = 10 ** np.random.uniform(-8, -4)
     lr = 10 ** np.random.uniform(-6, -2)
